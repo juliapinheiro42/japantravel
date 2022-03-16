@@ -2,8 +2,34 @@ import React from 'react';
 import './signup.css';
 import Header from '../../components/Header';
 import { Link } from 'react-router-dom';
+import {toast} from 'react-toastify';
+import axios from 'axios';
 
-export default function SignUp() {
+class SignUp extends React.Component {
+
+  state = {
+    name:'',
+    email: '',
+    password: '',
+    errorMsg: null
+  }
+  
+  cadastrar = async () => {
+      await axios
+      .post('http://localhost:8080/api/user', {
+       name: this.state.name,
+       email:  this.state.email,
+       password: this.state.password 
+      }).then(response => {
+     toast.success('Usuário cadastrado! Faça o Login')
+     this.props.history.push('/signin')
+   }).catch(error => {
+   toast.error(error.response.data)
+   })
+  
+  }
+
+  render(){
  return (
     <div className="container-center">
     <Header/>
@@ -13,11 +39,11 @@ export default function SignUp() {
     <h3> 走</h3>
     </div>
     <form>
-      <h1>Entrar</h1>
-      <input type="text" placeholder="Seu nome"/>
-      <input type="text" placeholder="email@email.com"/>
-      <input type="password" placeholder="*******" />
-      <button type="submit">Acessar</button>
+      <h1>Cadastro</h1>
+      <input type="text" placeholder="Seu nome" required value={this.state.name} onChange={e => this.setState({name: e.target.value})}/>
+      <input type="text" placeholder="email@email.com" required value={this.state.email} onChange={e => this.setState({email: e.target.value})}/>
+      <input type="password" placeholder="*******" required  value={this.state.password} onChange={e => this.setState({password: e.target.value})}/>
+      <button type="button" onClick={this.cadastrar} >Enviar</button>
     </form>  
    <Link to='/signin'>Já tem conta? Faça o LogIn</Link>
    
@@ -25,4 +51,6 @@ export default function SignUp() {
 </div>
 </div>
  );
+  }
 }
+export default SignUp;

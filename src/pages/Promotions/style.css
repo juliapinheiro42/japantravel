@@ -1,0 +1,21 @@
+table, h2{
+    font-family: 'lora';
+    font-size: 30px;
+}
+h2, table, tr, tbody, th, thead{
+    margin-left: 10px;
+    padding: 20px;
+    display: flex;
+    text-align: center;
+}
+
+.btn{
+    size: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: #f5c5cd;
+}
+.card-corpo{
+    display: flex;
+    flex-direction: column;
+}

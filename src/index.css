@@ -9,6 +9,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  
+}
+body{
+  background-image: linear-gradient(to left, rgb(243, 167, 167), #e4c4c8, #960019);
 }
 li{
   list-style: none;
