@@ -19,7 +19,7 @@ class SignIn extends React.Component {
    }).then(response => {
      localStorage.setItem('user_log', JSON.stringify(response.data))
      toast.success('Bem vindo!')
-     this.props.history.push('/carrinho')
+     this.props.history.push('/cadastro')
    }).catch(error =>{
      this.setState({errorMsg: error.response.data})
      toast.error('Ops! Usuário não encontrado')

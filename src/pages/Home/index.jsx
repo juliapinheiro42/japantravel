@@ -43,7 +43,7 @@ export default function Home() {
       <span>難</span>
       <span>い</span>
       </div>
-      <div className='japonesa'>
+      <div className='japonesa' loading='lazy'>
      <img src={foto} alt='japonesa na rua'/>
      </div>
      </div>

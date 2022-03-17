@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import TicketsService from '../../services/TicketsService';
 import './style.css';
 
+
 class CreateTicketsComponent extends Component {
     constructor(props) {
         super(props)

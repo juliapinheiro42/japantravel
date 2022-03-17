@@ -9,7 +9,7 @@ import SignUp from '../pages/SignUp';
 import Carrinho from '../pages/Carrinho';
 import AddTicket from '../pages/Promotions/AddTicket';
 import cadastro from '../pages/Promotions/cadastro';
-import ViewTickets from '../pages/Promotions/ViewTickets'
+
 
 export default function Routes() {
  return (
@@ -23,7 +23,6 @@ export default function Routes() {
         <Route path='/carrinho' component={Carrinho}/>
         <Route path='/cadastro' isPrivate component={cadastro}/>
         <Route path='/add-tickets/:id' isPrivate component={AddTicket}/>
-        <Route path='/view-tickets/:id' isPrivate component={ViewTickets}/>
     </Switch>
    </div>
  );

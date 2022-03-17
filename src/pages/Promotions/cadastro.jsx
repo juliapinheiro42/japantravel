@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import TicketsService from '../../services/TicketsService';
 import './style.css';
-
+import Header from '../../components/Header';
+import { Card } from 'react-bootstrap';
+import tokyo from '../../assets/tokyo.jpg';
 class CadastroComponent extends Component {
     constructor(props) {
         super(props)
@@ -15,12 +17,9 @@ class CadastroComponent extends Component {
     }
 
     deleteTickets(id){
-        TicketsService.deletetickets(id).then( res => {
+        TicketsService.deleteTickets(id).then( res => {
             this.setState({tickets: this.state.tickets.filter(tickets => tickets.id !== id)});
         });
-    }
-    viewTickets(id){
-        this.props.history.push(`/view-tickets/${id}`);
     }
     editTickets(id){
         this.props.history.push(`/add-tickets/${id}`);
@@ -38,46 +37,43 @@ class CadastroComponent extends Component {
 
     render() {
         return (
-            <div>
-                 <h2 className="text-center">Tickets List</h2>
-                 <div className = "row">
-                    <button onClick={this.addTickets} className='btn'> Add tickets</button>
-                 </div>
-                 <br></br>
-                 <div className = "row d-flex flex-column">
-                        <table className = "table table-striped table-bordered" >
-                            <thead>
-                                <tr>
-                                    <th> Tickets  Name</th>
-                                    <th> Tickets price</th>
-                                    <th> Tickets status</th>
-                                    <th> Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    this.state.tickets.map(
+            <div className='card-ticket'>
+                <Header/>
+                <div className='ticket-btn'>
+                <h2 className="text-center mt-3">Tickets</h2>
+                <button onClick={this.addTickets} className='btn'> Add tickets</button>
+                </div>
+                 
+                <Card style={{ width: '18rem' }} className='m-5'>
+                <Card.Img variant="top" src={tokyo} />
+               { this.state.tickets.map(
                                         tickets => 
-                                        <tr key = {tickets.id}>
-                                             <td> { tickets.name} </td>   
-                                             <td> {tickets.price}</td>
-                                             <td> {tickets.status}</td>
-                                             <td>
-                                                 <button className='btn' onClick={ () => this.editTickets(tickets.id)}>Update </button>
-                                                 <button className='btn' onClick={ () => this.deleteTickets(tickets.id)} >Delete </button>
-                                                 <button className='btn' onClick={ () => this.viewTickets(tickets)}>View</button>
-                                               </td>
-                                         </tr>
-                                    )}
-                             </tbody>
-                        </table>
-
-                 </div>
-
+                <Card.Body key = {tickets.id}>
+              
+                <Card.Title className='text-center' >{ tickets.name}</Card.Title>
+                <Card.Text className='text-center'>
+                 {tickets.price}
+                 <br/>
+                 {tickets.status}
+                </Card.Text>
+               <div className='d-flex'>
+                <button className='btn ' onClick={ () => this.editTickets(tickets.id)}>Update </button>
+                <button className='btn' onClick={ () => this.deleteTickets(tickets.id)} >Delete </button>
+                
+                </div>
+                </Card.Body>
+               )}
+                </Card>
+                
             </div>
             
         )
     }
+
+
+ 
+  
+    
 }
 
 export default CadastroComponent;
